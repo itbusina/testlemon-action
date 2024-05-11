@@ -41,12 +41,20 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Execute ApiBee
+    - name: echo inputs
       run: |
-        docker run \
-          -v ${{ inputs.collections_dir }}:/app/collections \
-          -v ${{ inputs.output }}:/app/output \
-          ${{ inputs.image }} \
-          dotnet apibee.dll \
-            --license ${{ inputs.license }} \
-            --files ./collections/${{ inputs.files }}
+        echo ${{ inputs.image }}
+        echo ${{ inputs.license }}
+        echo ${{ inputs.collections_dir }}
+        echo ${{ inputs.files }}
+        echo ${{ inputs.output }}
+        
+    #- name: Execute ApiBee
+     # run: |
+     #   docker run \
+     #     -v ${{ inputs.collections_dir }}:/app/collections \
+     #     -v ${{ inputs.output }}:/app/output \
+     #     ${{ inputs.image }} \
+     #     dotnet apibee.dll \
+     #       --license ${{ inputs.license }} \
+     #       --files ./collections/${{ inputs.files }}
