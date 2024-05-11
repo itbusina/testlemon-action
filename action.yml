@@ -14,6 +14,10 @@ inputs:
   output_dir:
     description: 'The directory path to save the report(s).'
     required: false
+  network:
+    description: 'The container network.'
+    required: false
+    defailt: 'apibee'
 
 runs:
   using: "composite"
@@ -24,5 +28,6 @@ runs:
         docker run \
           -v ${{ inputs.input_dir }}:/app/${{ inputs.input_dir }} \
           -v ${{ inputs.output_dir }}:/app/${{ inputs.output_dir }} \
+          --network=${{ inputs.network }} \
           ${{ inputs.image }} \
           dotnet apibee.dll ${{ inputs.args }}
