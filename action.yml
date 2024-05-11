@@ -1,0 +1,52 @@
+name: 'Execute ApiBee runner'
+description: 'ApiBee runner GitHub Action'
+inputs:
+  image:
+    description: 'Docker image.'
+    required: true
+  license:
+    description: 'Application license.'
+    required: true
+  collections_dir:
+    description: 'The path to a directory to get collection(s).'
+    required: true
+  files:
+    description: 'The path to file(s), directory(ies) or URL resource to get collection(s).'
+    required: true
+  headers:
+    description: 'Http headers for URL resource.'
+    required: false
+  variables:
+    description: 'Variables which can be used in collection(s). Example -v host=https://superserver.prod.com.'
+    required: false
+  tags:
+    description: 'Tags to filter the collection(s) requests.'
+    required: false
+  parallel:
+    description: 'Execute requests in parallel.'
+    required: false
+  repeat:
+    description: 'Number of iterations.'
+    required: false
+  delay:
+    description: 'Delay between iterations in milliseconds.'
+    required: false
+  interval:
+    description: 'Interval for continious looping in milliseconds.'
+    required: false
+  output:
+    description: 'The directory path to save the report(s).'
+    required: false
+    
+runs:
+  using: "composite"
+  steps:
+    - name: Execute ApiBee
+      run: |
+        docker run \
+          -v ${{ inputs.collections_dir }}:/app/collections \
+          -v ${{ inputs.output }}:/app/output \
+          ${{ inputs.image }} \
+          dotnet apibee.dll \
+            --license ${{ inputs.license }} \
+            --files ./collections/${{ inputs.files }}
