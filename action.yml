@@ -4,41 +4,17 @@ inputs:
   image:
     description: 'Docker image.'
     required: true
-  license:
-    description: 'Application license.'
+  args:
+    description: 'The ApiBee arguments.'
     required: true
-  dir:
+  input_dir:
     description: 'The path to a directory with collection(s).'
     required: false
     default: .
-  files:
-    description: 'The path to file(s), directory(ies) or URL resource to get collection(s).'
-    required: true
-  headers:
-    description: 'Http headers for URL resource.'
-    required: false
-  variables:
-    description: 'Variables which can be used in collection(s). Example -v host=https://superserver.prod.com.'
-    required: false
-  tags:
-    description: 'Tags to filter the collection(s) requests.'
-    required: false
-  parallel:
-    description: 'Execute requests in parallel.'
-    required: false
-  repeat:
-    description: 'Number of iterations.'
-    required: false
-  delay:
-    description: 'Delay between iterations in milliseconds.'
-    required: false
-  interval:
-    description: 'Interval for continious looping in milliseconds.'
-    required: false
-  output:
+  output_dir:
     description: 'The directory path to save the report(s).'
     required: false
-    
+
 runs:
   using: "composite"
   steps:
@@ -46,12 +22,7 @@ runs:
       shell: bash
       run: |
         docker run \
-          -v ${{ inputs.dir }}:/app/${{ inputs.dir }} \
-          -v ${{ inputs.output }}:/app/${{ inputs.output }} \
+          -v ${{ inputs.input_dir }}:/app/${{ inputs.input_dir }} \
+          -v ${{ inputs.output_dir }}:/app/${{ inputs.output_dir }} \
           ${{ inputs.image }} \
-          dotnet apibee.dll \
-            --license ${{ inputs.license }} \
-            --files ${{ inputs.files }} \
-            --variables ${{ inputs.variables }} \
-            --tags ${{ inputs.tags }} \
-            --output ${{ inputs.output }}
+          dotnet apibee.dll ${{ inputs.args }}
