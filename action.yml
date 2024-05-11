@@ -47,8 +47,11 @@ runs:
       run: |
         docker run \
           -v ${{ inputs.dir }}:/app/${{ inputs.dir }} \
-          -v ${{ inputs.output }}:/app/output \
+          -v ${{ inputs.output }}:/app/${{ inputs.output }} \
           ${{ inputs.image }} \
           dotnet apibee.dll \
             --license ${{ inputs.license }} \
-            --files ${{ inputs.files }}
+            --files ${{ inputs.files }} \
+            --variables ${{ inputs.variables }} \
+            --tags ${{ inputs.tags }} \
+            --output ${{ inputs.output }}
