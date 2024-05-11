@@ -42,6 +42,7 @@ runs:
   using: "composite"
   steps:
     - name: echo inputs
+      shell: bash
       run: |
         echo ${{ inputs.image }}
         echo ${{ inputs.license }}
