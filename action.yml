@@ -7,9 +7,10 @@ inputs:
   license:
     description: 'Application license.'
     required: true
-  collections_dir:
-    description: 'The path to a directory to get collection(s).'
-    required: true
+  dir:
+    description: 'The path to a directory with collection(s).'
+    required: false
+    default: .
   files:
     description: 'The path to file(s), directory(ies) or URL resource to get collection(s).'
     required: true
@@ -41,21 +42,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: echo inputs
-      shell: bash
+    - name: Execute ApiBee
       run: |
-        echo ${{ inputs.image }}
-        echo ${{ inputs.license }}
-        echo ${{ inputs.collections_dir }}
-        echo ${{ inputs.files }}
-        echo ${{ inputs.output }}
-        
-    #- name: Execute ApiBee
-     # run: |
-     #   docker run \
-     #     -v ${{ inputs.collections_dir }}:/app/collections \
-     #     -v ${{ inputs.output }}:/app/output \
-     #     ${{ inputs.image }} \
-     #     dotnet apibee.dll \
-     #       --license ${{ inputs.license }} \
-     #       --files ./collections/${{ inputs.files }}
+        docker run \
+          -v ${{ inputs.dir }}:/app/${{ inputs.dir }} \
+          -v ${{ inputs.output }}:/app/output \
+          ${{ inputs.image }} \
+          dotnet apibee.dll \
+            --license ${{ inputs.license }} \
+            --files ${{ inputs.files }}
