@@ -2,8 +2,9 @@ name: 'Execute ApiBee runner'
 description: 'ApiBee runner GitHub Action'
 inputs:
   image:
-    description: 'Docker image.'
+    description: 'ApiBee Docker image.'
     required: true
+    default: 'kbahdanovich/apibee:latest'
   args:
     description: 'The ApiBee arguments.'
     required: true
@@ -25,4 +26,4 @@ runs:
           -v ${{ inputs.input_dir }}:/app/${{ inputs.input_dir }} \
           -v ${{ inputs.output_dir }}:/app/${{ inputs.output_dir }} \
           ${{ inputs.image }} \
-          dotnet apibee.dll ${{ inputs.args }}
+          ${{ inputs.args }}
