@@ -15,6 +15,10 @@ inputs:
   output_dir:
     description: 'The directory path to save the report(s).'
     required: false
+  network:
+    description: 'The container network.'
+    required: false
+    default: 'apibee'
 
 runs:
   using: "composite"
@@ -22,8 +26,11 @@ runs:
     - name: Execute ApiBee
       shell: bash
       run: |
+        docker network create apibee
         docker run \
           -v ${{ inputs.input_dir }}:/app/${{ inputs.input_dir }} \
           -v ${{ inputs.output_dir }}:/app/${{ inputs.output_dir }} \
+          --rm \
+          --network=${{ inputs.network }} \
           ${{ inputs.image }} \
           ${{ inputs.args }}
