@@ -25,7 +25,7 @@ jobs:
           input_dir: ./tests
           output_dir: ./output
           args: |
-            --files ./tests/colection.json \
+            --collections ./tests/colection.json \
             --parallel \
             --variables host=https://server.dev.com
             --output output \
