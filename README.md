@@ -21,7 +21,6 @@ jobs:
     - name: Run ApiBee
       uses: itbusina/apibee-action@v0.1.11-alpha
       with:
-          image: kbahdanovich/apibee:latest
           input_dir: ./tests
           output_dir: ./output
           args: |
