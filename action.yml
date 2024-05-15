@@ -18,7 +18,7 @@ inputs:
   network:
     description: 'The container network.'
     required: false
-    default: 'apibee'
+    default: 'host'
 
 runs:
   using: "composite"
