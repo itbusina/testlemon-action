@@ -11,7 +11,7 @@ inputs:
   input_dir:
     description: 'The path to a directory with collection(s).'
     required: false
-    default: .
+    default: 'test'
   output_dir:
     description: 'The directory path to save the report(s).'
     required: false
