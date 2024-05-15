@@ -4,7 +4,7 @@ inputs:
   image:
     description: 'ApiBee Docker image.'
     required: true
-    default: 'kbahdanovich/apibee:latest'
+    default: 'itbusina/apibee:latest'
   args:
     description: 'The ApiBee arguments.'
     required: true

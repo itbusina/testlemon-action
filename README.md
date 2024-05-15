@@ -19,14 +19,16 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run ApiBee
-      uses: itbusina/apibee-action@v0.1.12-alpha
+      uses: itbusina/apibee-action@v0.1.15-alpha
       with:
+          image: itbusina/apibee:latest
           input_dir: ./tests
           output_dir: ./output
+          network: container:serverundertest
           args: |
             --collections ./tests/colection.json \
             --parallel \
-            --variables host=https://server.dev.com
+            --variables host=https://serverundertest:8080 \
             --output output \
             --license ${{ secrets.APIBEELICENSE }}
 
