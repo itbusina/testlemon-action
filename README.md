@@ -19,13 +19,12 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run ApiBee
-      uses: itbusina/apibee-action@v0.1.11-alpha
+      uses: itbusina/apibee-action@v0.1.12-alpha
       with:
-          image: kbahdanovich/apibee:latest
           input_dir: ./tests
           output_dir: ./output
           args: |
-            --files ./tests/colection.json \
+            --collections ./tests/colection.json \
             --parallel \
             --variables host=https://server.dev.com
             --output output \
