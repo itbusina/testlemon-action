@@ -15,6 +15,7 @@ inputs:
   output_dir:
     description: 'The directory path to save the report(s).'
     required: false
+    default: 'output'
   network:
     description: 'The container network.'
     required: false
