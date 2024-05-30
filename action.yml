@@ -12,10 +12,6 @@ inputs:
     description: 'The path to a directory with collection(s).'
     required: false
     default: 'test'
-  output_dir:
-    description: 'The directory path to save the report(s).'
-    required: false
-    default: 'output'
   network:
     description: 'The container network.'
     required: false
@@ -29,7 +25,6 @@ runs:
       run: |
         docker run \
           -v ${{ inputs.input_dir }}:/app/${{ inputs.input_dir }} \
-          -v ${{ inputs.output_dir }}:/app/${{ inputs.output_dir }} \
           --rm \
           --network=${{ inputs.network }} \
           ${{ inputs.image }} \
