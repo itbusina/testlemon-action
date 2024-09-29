@@ -1,4 +1,4 @@
-# Official ApiBee GitHub Action
+# ApiBee official GitHub Action
 
 GitHub Action for ApiBee requests runner.
 
@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run ApiBee
-      uses: itbusina/apibee-action@v0.1.15-alpha
+      uses: itbusina/apibee-action@v0.1.16-alpha
       with:
           image: itbusina/apibee:latest
           input_dir: ./tests
