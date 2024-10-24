@@ -1,6 +1,6 @@
-# ApiBee official GitHub Action
+# TestLemon official GitHub Action
 
-GitHub Action for ApiBee requests runner.
+GitHub Action for TestLemon runner.
 
 # Usage
 
@@ -18,10 +18,10 @@ jobs:
     - name: Code checkout
       uses: actions/checkout@v4
 
-    - name: Run ApiBee
-      uses: itbusina/apibee-action@v0.1.16-alpha
+    - name: Run TestLemon
+      uses: itbusina/testlemon-action@v0.1.16-alpha
       with:
-          image: itbusina/apibee:latest
+          image: itbusina/testlemon:latest
           input_dir: ./tests
           output_dir: ./output
           network: container:serverundertest
