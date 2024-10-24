@@ -1,12 +1,12 @@
-name: 'Execute ApiBee runner'
-description: 'ApiBee runner GitHub Action'
+name: 'Execute TestLemon runner'
+description: 'TestLemon runner GitHub Action'
 inputs:
   image:
-    description: 'ApiBee Docker image.'
+    description: 'TestLemon Docker image.'
     required: true
-    default: 'itbusina/apibee:latest'
+    default: 'itbusina/testlemon:latest'
   args:
-    description: 'The ApiBee arguments.'
+    description: 'The TestLemon arguments.'
     required: true
   input_dir:
     description: 'The path to a directory with collection(s).'
@@ -24,7 +24,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Execute ApiBee
+    - name: Execute TestLemon
       shell: bash
       run: |
         docker run \
