@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run TestLemon
-      uses: itbusina/testlemon-action@v0.1.16-alpha
+      uses: itbusina/testlemon-action@v0.2
       with:
           image: itbusina/testlemon:latest
           input_dir: ./tests
